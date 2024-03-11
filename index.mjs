@@ -11,7 +11,16 @@ function checkInstructionFile(fileData) {
     inputFileName = row[0];
     outputFileName = row[1];
 
-    //TODO: check format
+    //console.log(inputFileName);
+    //console.log(outputFileName);
+
+    // check instruction format
+    if(!inputFileName || !outputFileName) {
+        console.error('Bad instruction');
+        return 1;
+    }
+
+    return 0;
 }
 
 function readAndWrite(input, output) {
@@ -32,7 +41,8 @@ fs.readFile(instructionFileName, (err, data) => {
     if (err) {
         console.error(err.message);
     } else {
-        checkInstructionFile(data);
-        readAndWrite(inputFileName, outputFileName);
+        if(checkInstructionFile(data) === 0) {
+            readAndWrite(inputFileName, outputFileName);
+        }
     }
 })
