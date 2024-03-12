@@ -1,0 +1,13 @@
+{
+  "name": "hw4",
+  "version": "1.0.0",
+  "description": "Vytvořte server, který budou reagovat na tři různé požadavky z prohlížeče. /increase, /decrease a /read (celý URL v prohlížeči bude tedy například http://localhost:3000/increase). Při zavolání přes cestu /increase a /decrease bude server zvyšovat/snižovat o jedničku číslo, které bude mít uložené v souboru counter.txt (pokud soubor neexistuje, tak ho server založí s úvodním číslem 0). U těchto dvou cest může server vrátit libovolnou odpověď (například text OK). Při zavolání serveru přes cestu /read vratí server prohlížeči číslo uložené v souboru counter.txt.",
+  "main": "index.js",
+  "scripts": {
+    "server": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kovm24",
+  "license": "ISC",
+  "type": "module"
+}
