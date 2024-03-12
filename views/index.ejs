@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8"/>
+    <title>TODOs</title>
+</head>
+<body>
+<h1>Hello, World!</h1>
+
+<ul>
+    <% var todos; %>
+    <% for (const todo of todos) { %>
+        <li>
+            <%= todo.title %>
+            <a href="/remove-todo/<%= todo.id %>">
+                Odebrat
+            </a>
+            <a href="/toggle-todo/<%= todo.id %>">
+                <%= todo.done ? 'hotovo' : 'nehotovo' %> <!--TODO-->
+            </a>
+        </li>
+    <% } %>
+</ul>
+
+<form method="post" action="/add-todo">
+    <label>
+        <input placeholder="Nazev TODO" name="title"/>
+    </label>
+    <button type="submit">Přidat</button>
+
+</form>
+
+</body>
+</html>
