@@ -4,7 +4,11 @@ import fs from 'fs/promises'
 const fileName = "counter.txt";
 
 async function writeFile(number) {
-    await fs.writeFile(fileName, number.toString());
+    try {
+        await fs.writeFile(fileName, number.toString());
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 const server = http.createServer(async (req, res) => {
@@ -15,17 +19,13 @@ const server = http.createServer(async (req, res) => {
 
     let number;
 
-    await fs.readFile(fileName)
-        .then((data) => {
-            number = Number(data.toString());
-        })
-        .catch(() => {
-            writeFile("0")
-                .catch((error) => {
-                    console.error(error);
-                });
-            number = 0;
-        });
+    try {
+        const data = await fs.readFile(fileName);
+        number = Number(data.toString());
+    } catch (error) {
+        await writeFile("0");
+        number = 0;
+    }
 
     switch (resource) {
         case "increase":
